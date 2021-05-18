@@ -26,6 +26,14 @@ class UsersRepository implements IUsersRepository {
     return user;
   }
 
+  async findByCpf(cpf: string): Promise<User | undefined> {
+    const user = this.ormRepository.findOne({
+      where: { cpf },
+    });
+
+    return user;
+  }
+
   async findAll(listDeletedUsers: boolean): Promise<User[]> {
     const users = await this.ormRepository.find({
       where: { isActive: listDeletedUsers },

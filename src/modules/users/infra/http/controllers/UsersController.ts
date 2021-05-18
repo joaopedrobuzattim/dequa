@@ -3,6 +3,8 @@ import { Request, Response } from 'express';
 import CreateUserService from '@modules/users/services/CreateUserService';
 import ListUserService from '@modules/users/services/ListUserService';
 import DeleteUserService from '@modules/users/services/DeleteUserService';
+import GetUserService from '@modules/users/services/GetUserService';
+import UpdateUserService from '@modules/users/services/UpdateUserService';
 
 export default class UsersController {
   public async list(request: Request, response: Response): Promise<Response> {
@@ -14,7 +16,15 @@ export default class UsersController {
   }
 
   public async update(request: Request, response: Response): Promise<Response> {
-    return response.status(201).json({ message: 'ok' });
+    const { id } = request.params;
+
+    const { name, email, password, role, disability, cpf } = request.body;
+
+    const updateUser = container.resolve(UpdateUserService);
+
+    const newUser = await updateUser.exec({ id, name, email, password, role, disability, cpf });
+
+    return response.status(201).json(newUser);
   }
 
   public async delete(request: Request, response: Response): Promise<Response> {
@@ -38,6 +48,11 @@ export default class UsersController {
   }
 
   public async get(request: Request, response: Response): Promise<Response> {
-    return response.status(201).json({ message: 'ok' });
+    const { id } = request.params;
+    const getUser = container.resolve(GetUserService);
+
+    const user = await getUser.execute(id);
+
+    return response.status(200).json(user);
   }
 }

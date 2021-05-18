@@ -1,9 +1,10 @@
 import { injectable, inject } from 'tsyringe';
+import IUsersRepository from '@modules/users/repositories/IUsersRepository';
 import AppError from '@shared/errors/AppError';
 import User from '../infra/Typeorm/entities/User';
-import IUsersRepository from '../repositories/IUsersRepository';
 
 interface IRequest {
+  id: string;
   name: string;
   email: string;
   password: string;
@@ -13,29 +14,35 @@ interface IRequest {
 }
 
 @injectable()
-export default class CreateUserService {
+export default class UpdateUserService {
   constructor(
     @inject('UsersRepository')
     private usersRepository: IUsersRepository,
   ) {}
 
-  public async execute({ name, email, password, role, disability, cpf }: IRequest): Promise<User> {
-    const data = { name, email, password, role, disability, cpf };
+  async exec({ id, name, email, password, role, disability, cpf }: IRequest): Promise<User> {
+    const user = await this.usersRepository.findById(id);
+
+    if (!user) {
+      throw new AppError('User does not exist!', 404);
+    }
 
     let checkIfUserExists = await this.usersRepository.findByEmail(email);
 
-    if (checkIfUserExists) {
+    if (checkIfUserExists && user.email !== email) {
       throw new AppError(`User ${email} already exists!`, 409);
     }
 
     checkIfUserExists = await this.usersRepository.findByCpf(cpf);
 
-    if (checkIfUserExists) {
+    if (checkIfUserExists && user.cpf !== cpf) {
       throw new AppError(`Cpf ${cpf} already exists!`, 409);
     }
 
-    const user = await this.usersRepository.create(data);
+    Object.assign(user, { name, email, password, role, disability, cpf });
 
-    return user;
+    const newUser = await this.usersRepository.save(user);
+
+    return newUser;
   }
 }
