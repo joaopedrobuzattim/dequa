@@ -1,5 +1,6 @@
 import { injectable, inject } from 'tsyringe';
 import IUsersRepository from '@modules/users/repositories/IUsersRepository';
+import IHashProvider from '@modules/users/providers/HashProvider/models/IHashProvider';
 import AppError from '@shared/errors/AppError';
 import User from '../infra/Typeorm/entities/User';
 
@@ -18,6 +19,8 @@ export default class UpdateUserService {
   constructor(
     @inject('UsersRepository')
     private usersRepository: IUsersRepository,
+    @inject('HashProvider')
+    private hashProvider: IHashProvider,
   ) {}
 
   async exec({ id, name, email, password, role, disability, cpf }: IRequest): Promise<User> {
@@ -39,7 +42,9 @@ export default class UpdateUserService {
       throw new AppError(`Cpf ${cpf} already exists!`, 409);
     }
 
-    Object.assign(user, { name, email, password, role, disability, cpf });
+    const hashedPassword = await this.hashProvider.generateHash(password);
+
+    Object.assign(user, { name, email, password: hashedPassword, role, disability, cpf });
 
     const newUser = await this.usersRepository.save(user);
 
