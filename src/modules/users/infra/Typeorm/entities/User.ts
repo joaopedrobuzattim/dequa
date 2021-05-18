@@ -15,9 +15,9 @@ class User {
   password: string;
 
   @Column({
-    enum: ['freeUser', 'admin', 'employee', 'premiumUser'],
+    enum: ['freeUser', 'admin', 'boss', 'premiumUser'],
   })
-  role: 'freeUser' | 'admin' | 'employee' | 'premiumUser';
+  role: 'freeUser' | 'admin' | 'boss' | 'premiumUser';
 
   @Column()
   cpf: string;
