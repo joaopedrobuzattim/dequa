@@ -1,20 +1,20 @@
-import { injectable, inject } from 'tsyringe';
+import { inject, injectable } from 'tsyringe';
+import IUsersRepository from '@modules/users/repositories/IUsersRepository';
 import AppError from '@shared/errors/AppError';
-import User from '../infra/Typeorm/entities/User';
-import IUsersRepository from '../repositories/IUsersRepository';
 import IHashProvider from '../providers/HashProvider/models/IHashProvider';
+import User from '../infra/Typeorm/entities/User';
 
 interface IRequest {
   name: string;
   email: string;
   password: string;
-  role: 'freeUser' | 'admin' | 'premiumUser' | 'boss';
   cpf: string;
   disability: string;
+  role?: 'freeUser' | 'admin' | 'premiumUser' | 'boss';
 }
 
 @injectable()
-export default class CreateUserService {
+class CreateFreeUserService {
   constructor(
     @inject('UsersRepository')
     private usersRepository: IUsersRepository,
@@ -22,23 +22,27 @@ export default class CreateUserService {
     private hashProvider: IHashProvider,
   ) {}
 
-  public async execute(data: IRequest): Promise<User> {
+  public async exec(data: IRequest): Promise<User> {
     let checkIfUserExists = await this.usersRepository.findByEmail(data.email);
 
     if (checkIfUserExists) {
-      throw new AppError(`User ${data.email} already exists!`, 409);
+      throw new AppError(`User ${data.email} already exists`, 409);
     }
 
     checkIfUserExists = await this.usersRepository.findByCpf(data.cpf);
 
     if (checkIfUserExists) {
-      throw new AppError(`Cpf ${data.cpf} already exists!`, 409);
+      throw new AppError(`Cpf ${data.cpf} is already registered`, 409);
     }
 
     const hashedPassword = await this.hashProvider.generateHash(data.password);
 
-    const user = await this.usersRepository.create(data);
+    const parsedData = Object.assign(data, { role: 'freeUser', password: hashedPassword });
+
+    const user = await this.usersRepository.create(parsedData);
 
     return user;
   }
 }
+
+export default CreateFreeUserService;
