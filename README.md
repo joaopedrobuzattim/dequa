@@ -23,7 +23,7 @@ $ yarn typeorm migraton:run
 # Inicie a aplicaÃ§Ã£o
 $ yarn dev:server
 
-# O app vai estar¡ rodando na porta 3333 <http://localhost:3333/api/v1>
+# O app vai estar¡ rodando na porta 3333 <http://localhost:3333>
 ```
 ## :gear: .env File
 
