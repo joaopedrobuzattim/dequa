@@ -9,7 +9,7 @@ export default class FreeUsersController {
 
     const createFree = container.resolve(CreateFreeUserService);
 
-    const user = await createFree.exec({ name, email, password, disability, cpf });
+    const user = await createFree.exec({ name, email, password, cpf, disability });
 
     return response.status(201).json({ user });
   }

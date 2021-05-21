@@ -4,5 +4,4 @@ export default interface ICreateUserDto {
   password: string;
   role: 'freeUser' | 'admin' | 'premiumUser' | 'boss';
   cpf: string;
-  disability: string;
 }

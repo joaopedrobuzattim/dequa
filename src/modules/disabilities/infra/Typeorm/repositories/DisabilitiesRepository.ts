@@ -9,30 +9,8 @@ export default class DisabilitiesRepository implements IDisabilitiesRepository {
     this.ormRepository = getRepository(Disability);
   }
 
-  public async create(name: string): Promise<Disability> {
-    const disability = this.ormRepository.create({
-      name,
-    });
-
-    await this.ormRepository.save(disability);
-
-    return disability;
-  }
-
-  public async save(disability: Disability): Promise<Disability> {
-    await this.ormRepository.save(disability);
-
-    return disability;
-  }
-
-  public async delete(id: string): Promise<void> {
-    await this.ormRepository.delete(id);
-  }
-
-  public async findByName(name: string): Promise<Disability | undefined> {
-    const disability = await this.ormRepository.findOne({
-      where: { name },
-    });
+  async findById(id: string): Promise<Disability | undefined> {
+    const disability = await this.ormRepository.findOne(id);
 
     return disability;
   }

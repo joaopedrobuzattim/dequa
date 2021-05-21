@@ -9,7 +9,6 @@ interface IRequest {
   email: string;
   password: string;
   cpf: string;
-  disability: string;
   role?: 'freeUser' | 'admin' | 'premiumUser' | 'boss';
 }
 

@@ -1,4 +1,13 @@
-import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn } from 'typeorm';
+import Disability from '@modules/disabilities/infra/Typeorm/entities/Disability';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  CreateDateColumn,
+  UpdateDateColumn,
+  ManyToMany,
+  JoinTable,
+} from 'typeorm';
 
 @Entity('users')
 class User {
@@ -14,9 +23,7 @@ class User {
   @Column()
   password: string;
 
-  @Column({
-    enum: ['freeUser', 'admin', 'boss', 'premiumUser'],
-  })
+  @Column({})
   role: 'freeUser' | 'admin' | 'boss' | 'premiumUser';
 
   @Column()
@@ -25,14 +32,15 @@ class User {
   @Column()
   isActive: boolean;
 
-  @Column()
-  disability: string;
-
   @CreateDateColumn()
   createdAt: Date;
 
   @UpdateDateColumn()
   updatedAt: string;
+
+  @ManyToMany(() => Disability, (disability) => disability.name)
+  @JoinTable({ name: 'users-disabilities' })
+  disability: Disability[];
 }
 
 export default User;

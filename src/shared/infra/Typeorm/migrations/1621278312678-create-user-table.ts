@@ -40,10 +40,6 @@ export default class createUserTable1621278312678 implements MigrationInterface 
             default: true,
           },
           {
-            name: 'disability',
-            type: 'uuid',
-          },
-          {
             name: 'createdAt',
             type: 'timestamp',
             default: 'now()',

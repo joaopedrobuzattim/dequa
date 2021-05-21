@@ -11,7 +11,6 @@ interface IRequest {
   password: string;
   role: 'freeUser' | 'admin' | 'premiumUser' | 'boss';
   cpf: string;
-  disability: string;
 }
 
 @injectable()
@@ -23,7 +22,7 @@ export default class UpdateUserService {
     private hashProvider: IHashProvider,
   ) {}
 
-  async exec({ id, name, email, password, role, disability, cpf }: IRequest): Promise<User> {
+  async exec({ id, name, email, password, role, cpf }: IRequest): Promise<User> {
     const user = await this.usersRepository.findById(id);
 
     if (!user) {
@@ -44,7 +43,7 @@ export default class UpdateUserService {
 
     const hashedPassword = await this.hashProvider.generateHash(password);
 
-    Object.assign(user, { name, email, password: hashedPassword, role, disability, cpf });
+    Object.assign(user, { name, email, password: hashedPassword, role, cpf });
 
     const newUser = await this.usersRepository.save(user);
 
