@@ -9,8 +9,8 @@ export default class ListUserService {
     private usersRepository: IUsersRepository,
   ) {}
 
-  public async execute(listDeletedUsers: boolean): Promise<User[]> {
-    const users = await this.usersRepository.findAll(listDeletedUsers);
+  public async execute(): Promise<User[]> {
+    const users = await this.usersRepository.findAll();
 
     return users;
   }

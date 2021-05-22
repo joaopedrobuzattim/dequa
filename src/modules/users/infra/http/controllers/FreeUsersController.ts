@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
+import { classToClass } from 'class-transformer';
 
 import CreateFreeUserService from '@modules/users/services/CreateFreeUserService';
 
@@ -11,6 +12,6 @@ export default class FreeUsersController {
 
     const user = await createFree.exec({ name, email, password, cpf, disability });
 
-    return response.status(201).json({ user });
+    return response.status(201).json({ user: classToClass(user) });
   }
 }

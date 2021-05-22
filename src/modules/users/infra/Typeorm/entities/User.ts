@@ -1,4 +1,6 @@
 import Disability from '@modules/disabilities/infra/Typeorm/entities/Disability';
+import { Exclude } from 'class-transformer';
+
 import {
   Entity,
   Column,
@@ -21,6 +23,7 @@ class User {
   email: string;
 
   @Column()
+  @Exclude()
   password: string;
 
   @Column({})
@@ -38,7 +41,9 @@ class User {
   @UpdateDateColumn()
   updatedAt: string;
 
-  @ManyToMany(() => Disability, (disability) => disability.name)
+  @ManyToMany(() => Disability, {
+    eager: true,
+  })
   @JoinTable({ name: 'users-disabilities' })
   disability: Disability[];
 }

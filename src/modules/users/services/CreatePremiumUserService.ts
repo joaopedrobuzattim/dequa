@@ -1,6 +1,8 @@
 import { inject, injectable } from 'tsyringe';
 import IUsersRepository from '@modules/users/repositories/IUsersRepository';
 import AppError from '@shared/errors/AppError';
+import Disability from '@modules/disabilities/infra/Typeorm/entities/Disability';
+import IDisabilitiesRepository from '@modules/disabilities/repositories/IDisabilitiesRepository';
 import IHashProvider from '../providers/HashProvider/models/IHashProvider';
 import User from '../infra/Typeorm/entities/User';
 
@@ -10,6 +12,7 @@ interface IRequest {
   password: string;
   cpf: string;
   role?: 'freeUser' | 'admin' | 'premiumUser' | 'boss';
+  disability: string[];
 }
 
 @injectable()
@@ -19,6 +22,8 @@ class CreatePremiumUserService {
     private usersRepository: IUsersRepository,
     @inject('HashProvider')
     private hashProvider: IHashProvider,
+    @inject('DisabilitiesRepository')
+    private disabilitiesRepository: IDisabilitiesRepository,
   ) {}
 
   public async exec(data: IRequest): Promise<User> {
@@ -34,11 +39,22 @@ class CreatePremiumUserService {
       throw new AppError(`Cpf ${data.cpf} is already registered`, 409);
     }
 
+    const disabilities: Disability[] = [];
+
+    const { disability } = data;
+
+    disability.forEach(async (currentDisability) => {
+      const checkIfDisabilityExists = await this.disabilitiesRepository.findById(currentDisability);
+
+      if (checkIfDisabilityExists) disabilities.push(checkIfDisabilityExists);
+    });
     const hashedPassword = await this.hashProvider.generateHash(data.password);
 
-    const parsedData = Object.assign(data, { role: 'premiumUser', password: hashedPassword });
+    const parsedData = Object.assign(data, { password: hashedPassword, role: 'premiumUser', disability: disabilities });
 
     const user = await this.usersRepository.create(parsedData);
+
+    await this.usersRepository.save(user);
 
     return user;
   }
