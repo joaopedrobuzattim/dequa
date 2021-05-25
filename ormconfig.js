@@ -5,11 +5,11 @@ module.exports = {
     rejectUnauthorized: false
   },
   "entities":[
-    process.env.NODE_ENV = "prod" ? "dist/modules/**/infra/Typeorm/entities/*.js" : 
+    process.env.NODE_ENV = "production" ? "dist/modules/**/infra/Typeorm/entities/*.js" : 
     "./src/modules/**/infra/Typeorm/entities/*.ts"  
   ],
   "migrations":[
-    process.env.NODE_ENV = "dev" ?  "dist/shared/infra/Typeorm/migrations/*.js" :
+    process.env.NODE_ENV = "production" ?  "dist/shared/infra/Typeorm/migrations/*.js" :
      "./src/shared/infra/Typeorm/migrations/*.ts" 
   ],
   "cli":{
