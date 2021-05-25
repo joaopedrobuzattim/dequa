@@ -30,6 +30,6 @@ app.use((err: Error, _request: Request, response: Response, _next: NextFunction)
   });
 });
 
-app.listen(process.env.APP_PORT, () => {
+app.listen(process.env.PORT || 3000, () => {
   console.log('Running');
 });
