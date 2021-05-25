@@ -1,4 +1,15 @@
-import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn } from 'typeorm';
+import Disability from '@modules/disabilities/infra/Typeorm/entities/Disability';
+import { Exclude } from 'class-transformer';
+
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  CreateDateColumn,
+  UpdateDateColumn,
+  ManyToMany,
+  JoinTable,
+} from 'typeorm';
 
 @Entity('users')
 class User {
@@ -12,12 +23,11 @@ class User {
   email: string;
 
   @Column()
+  @Exclude()
   password: string;
 
-  @Column({
-    enum: ['freeUser', 'admin', 'employee', 'premiumUser'],
-  })
-  role: 'freeUser' | 'admin' | 'employee' | 'premiumUser';
+  @Column({})
+  role: 'freeUser' | 'admin' | 'boss' | 'premiumUser';
 
   @Column()
   cpf: string;
@@ -25,14 +35,17 @@ class User {
   @Column()
   isActive: boolean;
 
-  @Column()
-  disability: string;
-
   @CreateDateColumn()
   createdAt: Date;
 
   @UpdateDateColumn()
   updatedAt: string;
+
+  @ManyToMany(() => Disability, {
+    eager: true,
+  })
+  @JoinTable({ name: 'users-disabilities' })
+  disability: Disability[];
 }
 
 export default User;

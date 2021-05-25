@@ -23,6 +23,7 @@
     ],
     "rules": {
         "class-methods-use-this": "off",
+        "no-useless-constructor" : "off",
         "@typescript-eslint/naming-convention": [
             "error",
             {
@@ -33,7 +34,14 @@
                 "match": true
               }
             }
-          ]
+          ],
+          "import/extensions": [
+            "error",
+            "ignorePackages",
+            {
+              "ts": "never"
+            }
+         ]
     },
     "settings": {
       "import/resolver" : {

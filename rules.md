@@ -1,7 +1,0 @@
-## Aplication features 
-
-  -
-  -
-  -
-  -
-  -
