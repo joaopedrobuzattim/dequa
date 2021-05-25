@@ -10,6 +10,7 @@ interface IRequest {
   email: string;
   password: string;
   role: 'freeUser' | 'admin' | 'premiumUser' | 'boss';
+  birthDate: string;
   cpf: string;
 }
 
@@ -22,7 +23,7 @@ export default class UpdateUserService {
     private hashProvider: IHashProvider,
   ) {}
 
-  async exec({ id, name, email, password, role, cpf }: IRequest): Promise<User> {
+  async exec({ id, name, email, password, role, cpf, birthDate }: IRequest): Promise<User> {
     const user = await this.usersRepository.findById(id);
 
     if (!user) {
@@ -43,7 +44,7 @@ export default class UpdateUserService {
 
     const hashedPassword = await this.hashProvider.generateHash(password);
 
-    Object.assign(user, { name, email, password: hashedPassword, role, cpf });
+    Object.assign(user, { name, email, password: hashedPassword, role, cpf, birthDate });
 
     const newUser = await this.usersRepository.save(user);
 

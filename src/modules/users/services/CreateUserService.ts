@@ -12,6 +12,7 @@ interface IRequest {
   password: string;
   role: 'freeUser' | 'admin' | 'premiumUser' | 'boss';
   cpf: string;
+  birthDate: string;
   disability: string[];
 }
 

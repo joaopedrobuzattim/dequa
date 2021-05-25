@@ -19,11 +19,11 @@ export default class UsersController {
   public async update(request: Request, response: Response): Promise<Response> {
     const { id } = request.params;
 
-    const { name, email, password, role, cpf } = request.body;
+    const { name, email, password, role, cpf, birthDate } = request.body;
 
     const updateUser = container.resolve(UpdateUserService);
 
-    const newUser = await updateUser.exec({ id, name, email, password, role, cpf });
+    const newUser = await updateUser.exec({ id, name, email, password, role, cpf, birthDate });
 
     return response.status(201).json({ user: classToClass(newUser) });
   }
@@ -39,11 +39,11 @@ export default class UsersController {
   }
 
   public async create(request: Request, response: Response): Promise<Response> {
-    const { name, email, password, role, cpf, disability } = request.body;
+    const { name, email, password, role, cpf, disability, birthDate } = request.body;
 
     const createUser = container.resolve(CreateUserService);
 
-    const user = await createUser.execute({ name, email, password, role, cpf, disability });
+    const user = await createUser.execute({ name, email, password, role, cpf, disability, birthDate });
 
     return response.status(201).json({ user: classToClass(user) });
   }

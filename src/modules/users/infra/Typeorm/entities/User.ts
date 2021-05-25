@@ -33,6 +33,9 @@ class User {
   cpf: string;
 
   @Column()
+  birthDate: string;
+
+  @Column()
   isActive: boolean;
 
   @CreateDateColumn()
