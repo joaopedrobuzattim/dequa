@@ -9,7 +9,12 @@ export default class VacanciesController {
 
     if (request.query.office) {
       const office = String(request.query.office);
-      const filteredVacancies = await listVacancies.execute(office);
+      const filteredVacancies = await listVacancies.execute(office, undefined);
+      return response.status(200).json(filteredVacancies);
+    }
+    if (request.query.category) {
+      const category = String(request.query.category);
+      const filteredVacancies = await listVacancies.execute(undefined, category);
       return response.status(200).json(filteredVacancies);
     }
 

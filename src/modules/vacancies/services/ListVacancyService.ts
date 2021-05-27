@@ -9,9 +9,15 @@ export default class ListVacancyService {
     private vacanciesRepository: IVacanciesRepository,
   ) {}
 
-  public async execute(office?: string): Promise<Vacancy[]> {
+  public async execute(office?: string, category?: string): Promise<Vacancy[]> {
     if (office) {
       const vacancies = await this.vacanciesRepository.findByOffice(office);
+
+      return vacancies;
+    }
+
+    if (category) {
+      const vacancies = await this.vacanciesRepository.findByCategory(category);
 
       return vacancies;
     }
