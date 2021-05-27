@@ -14,4 +14,10 @@ export default class DisabilitiesRepository implements IDisabilitiesRepository {
 
     return disability;
   }
+
+  async list(): Promise<Disability[]> {
+    const disability = await this.ormRepository.find();
+
+    return disability;
+  }
 }
