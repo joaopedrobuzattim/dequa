@@ -70,6 +70,10 @@ group by "vacancies"."id"
       [id],
     );
 
+    if (vacancy.length === 0) {
+      return undefined;
+    }
+
     return vacancy;
   }
 

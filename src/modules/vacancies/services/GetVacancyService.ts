@@ -1,3 +1,4 @@
+import AppError from '@shared/errors/AppError';
 import { inject, injectable } from 'tsyringe';
 import Vacancy from '../infra/Typeorm/entities/ Vacancy';
 import IVacanciesRepository from '../repositories/IVacanciesRepository';
@@ -10,8 +11,12 @@ export default class GetVacancyService {
   ) {}
 
   public async execute(id: string): Promise<Vacancy | undefined> {
-    const vacancies = await this.vacanciesRepository.findById(id);
+    const vacancy = await this.vacanciesRepository.findById(id);
 
-    return vacancies;
+    if (!vacancy) {
+      throw new AppError('Vacancy not found!!', 404);
+    }
+
+    return vacancy;
   }
 }
