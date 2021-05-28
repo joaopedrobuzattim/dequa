@@ -1,6 +1,6 @@
 import { getRepository, Repository } from 'typeorm';
 import IVacanciesRepository from '@modules/vacancies/repositories/IVacanciesRepository';
-import Vacancy from '../entities/ Vacancy';
+import Vacancy from '../entities/Vacancy';
 
 class VacanciesRepository implements IVacanciesRepository {
   private ormRepository: Repository<Vacancy>;

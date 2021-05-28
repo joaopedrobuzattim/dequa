@@ -1,4 +1,4 @@
-import Vacancy from '../infra/Typeorm/entities/ Vacancy';
+import Vacancy from '../infra/Typeorm/entities/Vacancy';
 
 export default interface IVacanciesRepository {
   list(): Promise<Vacancy[]>;

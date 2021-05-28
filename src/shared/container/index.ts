@@ -1,6 +1,7 @@
 import { container } from 'tsyringe';
 
 import '@modules/users/providers';
+import './providers';
 
 import IUsersReposiotry from '@modules/users/repositories/IUsersRepository';
 import UsersRepository from '@modules/users/infra/Typeorm/repositories/UsersRepository';
@@ -14,7 +15,15 @@ import IVacanciesRepository from '@modules/vacancies/repositories/IVacanciesRepo
 import CategoriesRepository from '@modules/vacancies/infra/Typeorm/repositories/CategoriesRepository';
 import ICategoriesRepository from '@modules/vacancies/repositories/ICategoriesRepository';
 
+import ApplicationsRepository from '@modules/users/infra/Typeorm/repositories/ApplicationsRepository';
+import IApplicationsRepository from '@modules/users/repositories/IApplicationsRepository';
+
 container.registerSingleton<IUsersReposiotry>('UsersRepository', UsersRepository);
+
 container.registerSingleton<IDisabilitiesRepository>('DisabilitiesRepository', DisabilitiesRepository);
+
 container.registerSingleton<IVacanciesRepository>('VacanciesRepository', VacanciesRepository);
+
 container.registerSingleton<ICategoriesRepository>('CategoriesRepository', CategoriesRepository);
+
+container.registerSingleton<IApplicationsRepository>('ApplicationsRepository', ApplicationsRepository);

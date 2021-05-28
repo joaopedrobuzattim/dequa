@@ -7,6 +7,7 @@ import sessionRoutes from '@modules/users/infra/http/routes/session.routes';
 import vacancieRoutes from '@modules/vacancies/infra/http/routes/vacancy.routes';
 import disabilityRoutes from '@modules/disabilities/infra/http/routes/disability.routes';
 import categoryRoutes from '@modules/vacancies/infra/http/routes/category.routes';
+import userApplicationRoutes from '@modules/users/infra/http/routes/user.application.routes';
 
 const routes = Router();
 
@@ -17,5 +18,6 @@ routes.use('/session', sessionRoutes);
 routes.use('/vacancies', vacancieRoutes);
 routes.use('/disabilities', disabilityRoutes);
 routes.use('/categories', categoryRoutes);
+routes.use('/userApplication', userApplicationRoutes);
 
 export default routes;
