@@ -13,16 +13,20 @@ interface IUploadConfig {
 
   multer: {
     storage: multer.StorageEngine;
+    fileFilter: (request: Request, file: Express.Multer.File, callbacl: multer.FileFilterCallback) => void;
   };
 
   config: {
     // eslint-disable-next-line @typescript-eslint/ban-types
     disk: {};
+    aws: {
+      bucket: string;
+    };
   };
 }
 
 export default {
-  driver: process.env.NODE_ENV === 'production' ? 's3' : 'disk',
+  driver: process.env.NODE_ENV === 'production' ? process.env.PROD_STORAGE_DRIVER : 'disk',
 
   tmpFolder,
   uploadsFolder: resolve(tmpFolder, 'uploads'),
@@ -37,9 +41,24 @@ export default {
         return callback(null, fileName);
       },
     }),
+    fileFilter(request: Request, file: Express.Multer.File, callback: multer.FileFilterCallback): void {
+      const isAccepted = ['image/png', 'image/jpg', 'image/jpeg', 'application/pdf'].find(
+        (acceptedFormat) => acceptedFormat === file.mimetype,
+      );
+
+      if (isAccepted) {
+        request.multerFileFormatError = false;
+        return callback(null, true);
+      }
+      request.multerFileFormatError = true;
+      return callback(null, false);
+    },
   },
 
   config: {
     disk: {},
+    aws: {
+      bucket: 'app-dequa',
+    },
   },
 } as IUploadConfig;

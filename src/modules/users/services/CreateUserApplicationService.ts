@@ -56,11 +56,13 @@ class CreateUserApplicationService {
 
     const fileName = await this.storageProvider.saveFile(curriculumn);
 
+    const url = `https://app-dequa.s3.us-east-2.amazonaws.com/${fileName}`;
+
     const application = await this.applicationsRepository.create({
       userId,
       vacancyId,
       linkedin,
-      curriculumn: fileName,
+      curriculumn: process.env.NODE_ENV === 'production' ? url : fileName,
     });
 
     return application;
