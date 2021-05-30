@@ -8,8 +8,8 @@ import ThemesController from '../controllers/ThemesController';
 const themesRouter = Router();
 const themesController = new ThemesController();
 
-eventsRouter.use(ensureAuthenticated);
-eventsRouter.use(restrictTo('premiumUser'));
+themesRouter.use(ensureAuthenticated);
+themesRouter.use(restrictTo('premiumUser'));
 
 themesRouter.get('/', themesController.list);
 
