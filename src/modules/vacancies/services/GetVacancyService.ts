@@ -14,7 +14,7 @@ export default class GetVacancyService {
     const vacancy = await this.vacanciesRepository.findById(id);
 
     if (!vacancy) {
-      throw new AppError('Vacancy not found!!', 404);
+      throw new AppError('Vaga não encontrada', 404);
     }
 
     return vacancy[0];

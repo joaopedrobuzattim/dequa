@@ -31,13 +31,13 @@ class CreateFreeUserService {
     let checkIfUserExists = await this.usersRepository.findByEmail(data.email);
 
     if (checkIfUserExists) {
-      throw new AppError(`User ${data.email} already exists`, 409);
+      throw new AppError(`Usuário ${data.email} já existe`, 409);
     }
 
     checkIfUserExists = await this.usersRepository.findByCpf(data.cpf);
 
     if (checkIfUserExists) {
-      throw new AppError(`Cpf ${data.cpf} is already registered`, 409);
+      throw new AppError(`Cpf ${data.cpf} já está registrado!`, 409);
     }
 
     const disabilities: Disability[] = [];
@@ -55,7 +55,7 @@ class CreateFreeUserService {
 
     const user = await this.usersRepository.create(parsedData);
 
-    const disabilitiesInUser = Object.assign(user, { disability: disabilities })
+    const disabilitiesInUser = Object.assign(user, { disability: disabilities });
 
     await this.usersRepository.save(disabilitiesInUser);
 

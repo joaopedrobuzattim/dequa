@@ -16,7 +16,8 @@
     "pg": "^8.6.0",
     "reflect-metadata": "^0.1.13",
     "tsyringe": "^4.5.0",
-    "typeorm": "^0.2.32"
+    "typeorm": "^0.2.32",
+    "yup": "^0.32.9"
   },
   "scripts": {
     "dev:server": "ts-node-dev -r tsconfig-paths/register --inspect --transpile-only --ignore-watch node_modules src/shared/infra/http/server.ts",

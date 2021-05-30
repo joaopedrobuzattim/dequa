@@ -14,7 +14,7 @@ export default class GetEventService {
     const event = await this.eventsRepository.findById(id);
 
     if (!event) {
-      throw new AppError('Event not found!!', 404);
+      throw new AppError('Evento não encontrado!', 404);
     }
 
     return event[0];

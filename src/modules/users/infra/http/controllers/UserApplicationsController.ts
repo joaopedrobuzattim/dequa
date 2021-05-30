@@ -6,7 +6,7 @@ import AppError from '@shared/errors/AppError';
 export default class UserApplicationsController {
   public async create(request: Request, response: Response): Promise<Response> {
     if (request.multerFileFormatError) {
-      throw new AppError('Invalid file format! Only png, pdf, jpeg and jpg are allowed!', 422);
+      throw new AppError('Formato invalido! Somente pdf, jpg, jpeg e png são permitidos!', 422);
     }
 
     const { vacancyId, linkedin } = request.body;

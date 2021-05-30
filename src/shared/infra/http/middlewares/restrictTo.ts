@@ -6,7 +6,7 @@ type RestrictToFn = (...roles: string[]) => (request: Request, _response: Respon
 const restrictTo: RestrictToFn = (...roles: string[]) => {
   return (request: Request, _response: Response, next: NextFunction) => {
     if (!roles.includes(request.user.role)) {
-      return next(new AppError('You are not allowed to perform this action', 403));
+      return next(new AppError('Você não está autorizado a realizar esta ação!', 403));
     }
     return next();
   };

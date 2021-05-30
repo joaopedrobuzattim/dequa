@@ -14,7 +14,7 @@ export default class GetDisabilityService {
     const disability = await this.disabilitiesRepository.findById(id);
 
     if (!disability) {
-      throw new AppError(`disability does not exist!`, 404);
+      throw new AppError(`Deficiência não existente!`, 404);
     }
 
     return disability;
