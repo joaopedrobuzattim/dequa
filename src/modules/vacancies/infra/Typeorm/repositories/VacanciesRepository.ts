@@ -39,7 +39,7 @@ group by "vacancies"."id"
     return vacancies;
   }
 
-  public async findById(id: string): Promise<Vacancy | undefined> {
+  public async findById(id: string): Promise<Vacancy[] | undefined> {
     const vacancy = await this.ormRepository.query(
       `
     select 

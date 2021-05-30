@@ -17,6 +17,6 @@ export default class GetVacancyService {
       throw new AppError('Vacancy not found!!', 404);
     }
 
-    return vacancy;
+    return vacancy[0];
   }
 }

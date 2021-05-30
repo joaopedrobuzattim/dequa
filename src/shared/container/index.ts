@@ -18,6 +18,12 @@ import ICategoriesRepository from '@modules/vacancies/repositories/ICategoriesRe
 import ApplicationsRepository from '@modules/users/infra/Typeorm/repositories/ApplicationsRepository';
 import IApplicationsRepository from '@modules/users/repositories/IApplicationsRepository';
 
+import EventsRepository from '@modules/events/infra/Typeorm/repositories/EventsRepository';
+import IEventsRepository from '@modules/events/repositories/IEventsRepository';
+
+import ThemesRepository from '@modules/events/infra/Typeorm/repositories/ThemesRepository';
+import IThemesRepository from '@modules/events/repositories/IThemesRepository';
+
 container.registerSingleton<IUsersReposiotry>('UsersRepository', UsersRepository);
 
 container.registerSingleton<IDisabilitiesRepository>('DisabilitiesRepository', DisabilitiesRepository);
@@ -27,3 +33,7 @@ container.registerSingleton<IVacanciesRepository>('VacanciesRepository', Vacanci
 container.registerSingleton<ICategoriesRepository>('CategoriesRepository', CategoriesRepository);
 
 container.registerSingleton<IApplicationsRepository>('ApplicationsRepository', ApplicationsRepository);
+
+container.registerSingleton<IEventsRepository>('EventsRepository', EventsRepository);
+
+container.registerSingleton<IThemesRepository>('ThemesRepository', ThemesRepository);
