@@ -2,11 +2,11 @@ module.exports = {
   name: 'default',
   type: 'postgres',
   url: process.env.DATABASE_URL || null,
-  host: process.env.NODE_ENV === 'production' ? null : 'localhost',
-  port: process.env.NODE_ENV === 'production' ? null : 5432,
-  username: process.env.NODE_ENV === 'production' ? null : 'postgres',
-  password: process.env.NODE_ENV === 'production' ? null : 'docker',
-  database: process.env.NODE_ENV === 'production' ? null : 'ioasys',
+  host: process.env.NODE_ENV === 'production' ? null : process.env.PG_HOST,
+  port: process.env.NODE_ENV === 'production' ? null : process.env.PG_PORT,
+  username: process.env.NODE_ENV === 'production' ? null :process.env.PG_USERNAME,
+  password: process.env.NODE_ENV === 'production' ? null : process.env.PG_PASSWORD,
+  database: process.env.NODE_ENV === 'production' ? null : process.env.PG_DATABASE,
   logging: process.env.NODE_ENV !== 'production',
   ssl:
     process.env.NODE_ENV === 'production'

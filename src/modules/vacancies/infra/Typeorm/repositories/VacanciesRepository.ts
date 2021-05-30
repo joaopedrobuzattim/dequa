@@ -1,6 +1,6 @@
 import { getRepository, Repository } from 'typeorm';
 import IVacanciesRepository from '@modules/vacancies/repositories/IVacanciesRepository';
-import Vacancy from '../entities/ Vacancy';
+import Vacancy from '../entities/Vacancy';
 
 class VacanciesRepository implements IVacanciesRepository {
   private ormRepository: Repository<Vacancy>;
@@ -39,7 +39,7 @@ group by "vacancies"."id"
     return vacancies;
   }
 
-  public async findById(id: string): Promise<Vacancy | undefined> {
+  public async findById(id: string): Promise<Vacancy[] | undefined> {
     const vacancy = await this.ormRepository.query(
       `
     select 

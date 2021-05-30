@@ -37,7 +37,7 @@ class UsersRepository implements IUsersRepository {
   }
 
   async findAll(): Promise<User[]> {
-    const users = await this.ormRepository.find({ where: { isActive: true} , relations: ['disability'] });
+    const users = await this.ormRepository.find({ where: { isActive: true }, relations: ['disability'] });
 
     return users;
   }

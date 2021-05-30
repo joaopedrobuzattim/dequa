@@ -1,4 +1,4 @@
-import Vacancy from '@modules/vacancies/infra/Typeorm/entities/ Vacancy';
+import Vacancy from '@modules/vacancies/infra/Typeorm/entities/Vacancy';
 import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, OneToMany } from 'typeorm';
 
 @Entity('companies')

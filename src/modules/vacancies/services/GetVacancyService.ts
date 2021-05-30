@@ -1,6 +1,6 @@
 import AppError from '@shared/errors/AppError';
 import { inject, injectable } from 'tsyringe';
-import Vacancy from '../infra/Typeorm/entities/ Vacancy';
+import Vacancy from '../infra/Typeorm/entities/Vacancy';
 import IVacanciesRepository from '../repositories/IVacanciesRepository';
 
 @injectable()
@@ -17,6 +17,6 @@ export default class GetVacancyService {
       throw new AppError('Vacancy not found!!', 404);
     }
 
-    return vacancy;
+    return vacancy[0];
   }
 }

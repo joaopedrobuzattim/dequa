@@ -5,5 +5,6 @@ declare namespace Express {
       id: string;
       role: 'freeUser' | 'admin' | 'premiumUser' | 'boss';
     };
+    multerFileFormatError?: true | false;
   }
 }
