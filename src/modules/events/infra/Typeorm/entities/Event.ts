@@ -36,6 +36,9 @@ class Event {
   @Column()
   transmissionMedium: string;
 
+  @Column()
+  accessibilityBonus: string;
+
   @CreateDateColumn()
   createdAt: Date;
 

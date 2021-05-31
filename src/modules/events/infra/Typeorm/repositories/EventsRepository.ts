@@ -17,6 +17,7 @@ export default class EventsRepository implements IEventsRepository {
       "events"."description" as "description",
       "events"."thumb" as "thumb",
       "events"."transmissionMedium" as "transmissionMedium",
+      "events"."accessibilityBonus" as "accessibilityBonus",
       "events"."date" as "date",
       json_agg("themes") as "theme"
     FROM events
@@ -36,6 +37,7 @@ export default class EventsRepository implements IEventsRepository {
       "events"."description" as "description",
       "events"."thumb" as "thumb",
       "events"."transmissionMedium" as "transmissionMedium",
+      "events"."accessibilityBonus" as "accessibilityBonus",
       "events"."date" as "date",
       json_agg("themes") as "theme"
     FROM events
@@ -64,6 +66,7 @@ export default class EventsRepository implements IEventsRepository {
         "events"."description" as "description",
         "events"."thumb" as "thumb",
         "events"."transmissionMedium" as "transmissionMedium",
+        "events"."accessibilityBonus" as "accessibilityBonus",
         "events"."date" as "date",
         json_agg("themes") as "theme"
       FROM events
@@ -91,6 +94,7 @@ export default class EventsRepository implements IEventsRepository {
         "events"."description" as "description",
         "events"."thumb" as "thumb",
         "events"."transmissionMedium" as "transmissionMedium",
+        "events"."accessibilityBonus" as "accessibilityBonus",
         "events"."date" as "date",
         json_agg("themes") as "theme"
       FROM events
@@ -116,6 +120,7 @@ export default class EventsRepository implements IEventsRepository {
       "events"."description" as "description",
       "events"."thumb" as "thumb",
       "events"."transmissionMedium" as "transmissionMedium",
+      "events"."accessibilityBonus" as "accessibilityBonus",
       "events"."date" as "date",
       json_agg("themes") as "theme"
     FROM events
