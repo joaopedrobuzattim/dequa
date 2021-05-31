@@ -7,6 +7,8 @@ import uploadConfig from '@config/upload';
 import ensureAuthenticated from '../middlewares/ensureAuthenticated';
 import UserApplicationsController from '../controllers/UserApplicationsController';
 
+console.log('Before router declaration');
+
 const userApplicationRouter = Router();
 const userApplicationsController = new UserApplicationsController();
 
