@@ -54,24 +54,52 @@ export default class EventsRepository implements IEventsRepository {
     return event;
   }
 
-  public async findByTheme(theme: string): Promise<Event[]> {
+  public async findByTheme(theme: string[]): Promise<Event[]> {
+    if (theme.length === 0) {
+      const event = await this.ormRepository.query(
+        `
+      SELECT 
+      "events"."id" as "id",
+        "events"."name" as "name",
+        "events"."description" as "description",
+        "events"."thumb" as "thumb",
+        "events"."transmissionMedium" as "transmissionMedium",
+        "events"."date" as "date",
+        json_agg("themes") as "theme"
+      FROM events
+      LEFT JOIN themes 
+      ON  "events"."themeId" = "themes"."id"
+      WHERE "themes"."name" = $1
+      group by "events"."id"
+      `,
+        [theme[0]],
+      );
+
+      return event;
+    }
+    let queryLine = `WHERE "themes"."name" = $1 `;
+
+    for (let i = 1; i < theme.length; i += 1) {
+      queryLine += ` OR "themes"."name" = $${i + 1}`;
+    }
+
     const event = await this.ormRepository.query(
       `
-    SELECT 
-	  "events"."id" as "id",
-      "events"."name" as "name",
-      "events"."description" as "description",
-      "events"."thumb" as "thumb",
-      "events"."transmissionMedium" as "transmissionMedium",
-      "events"."date" as "date",
-      json_agg("themes") as "theme"
-    FROM events
-    LEFT JOIN themes 
-    ON  "events"."themeId" = "themes"."id"
-    WHERE "themes"."name" = $1
-    group by "events"."id"
-    `,
-      [theme],
+      SELECT 
+      "events"."id" as "id",
+        "events"."name" as "name",
+        "events"."description" as "description",
+        "events"."thumb" as "thumb",
+        "events"."transmissionMedium" as "transmissionMedium",
+        "events"."date" as "date",
+        json_agg("themes") as "theme"
+      FROM events
+      LEFT JOIN themes 
+      ON  "events"."themeId" = "themes"."id"
+      ${queryLine}
+      group by "events"."id"
+      `,
+      theme,
     );
 
     return event;

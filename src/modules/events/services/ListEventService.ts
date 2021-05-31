@@ -17,7 +17,8 @@ export default class ListEventService {
     }
 
     if (theme) {
-      const events = await this.eventsRepository.findByTheme(theme);
+      const themeArr = theme.split(',');
+      const events = await this.eventsRepository.findByTheme(themeArr);
 
       return events;
     }
