@@ -37,8 +37,10 @@ export default {
       destination: tmpFolder,
       filename(request: Request, file: Express.Multer.File, callback: (error: Error | null, filename: string) => void) {
         const authHeader = request.headers.authorization;
-
+        console.log('Auth headers on multer', authHeader);
+        console.log('Verificacao dentro das configs do multer');
         if (!authHeader) {
+          console.log('caiu');
           throw new AppError('JWT token ausente!', 401);
         }
 

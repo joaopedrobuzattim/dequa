@@ -13,6 +13,8 @@ const userApplicationsController = new UserApplicationsController();
 userApplicationRouter.use(ensureAuthenticated);
 userApplicationRouter.use(restrictTo('freeUser', 'premiumUser'));
 
+console.log('Verificação apos middleawares');
+
 const upload = multer(uploadConfig.multer);
 
 userApplicationRouter.post('/', upload.single('curriculumn'), userApplicationsController.create);
