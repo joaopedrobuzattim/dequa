@@ -9,7 +9,7 @@ const themesRouter = Router();
 const themesController = new ThemesController();
 
 themesRouter.use(ensureAuthenticated);
-themesRouter.use(restrictTo('premiumUser'));
+themesRouter.use(restrictTo('premiumUser', 'admin'));
 
 themesRouter.get('/', themesController.list);
 

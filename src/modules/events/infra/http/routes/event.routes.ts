@@ -7,7 +7,7 @@ const eventsRouter = Router();
 const eventsController = new EventsController();
 
 eventsRouter.use(ensureAuthenticated);
-eventsRouter.use(restrictTo('premiumUser'));
+eventsRouter.use(restrictTo('premiumUser', 'admin'));
 
 eventsRouter.get('/', eventsController.list);
 eventsRouter.get('/:id', eventsController.getOne);

@@ -4,7 +4,7 @@ module.exports = {
   url: process.env.DATABASE_URL || null,
   host: process.env.NODE_ENV === 'production' ? null : process.env.PG_HOST,
   port: process.env.NODE_ENV === 'production' ? null : process.env.PG_PORT,
-  username: process.env.NODE_ENV === 'production' ? null :process.env.PG_USERNAME,
+  username: process.env.NODE_ENV === 'production' ? null : process.env.PG_USERNAME,
   password: process.env.NODE_ENV === 'production' ? null : process.env.PG_PASSWORD,
   database: process.env.NODE_ENV === 'production' ? null : process.env.PG_DATABASE,
   logging: process.env.NODE_ENV !== 'production',

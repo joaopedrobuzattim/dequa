@@ -15,9 +15,9 @@ export default class ListVacancyService {
 
       return vacancies;
     }
-
     if (category) {
-      const vacancies = await this.vacanciesRepository.findByCategory(category);
+      const catergoryArr = category.split(',');
+      const vacancies = await this.vacanciesRepository.findByCategory(catergoryArr);
 
       return vacancies;
     }
