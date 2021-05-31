@@ -7,16 +7,14 @@ import uploadConfig from '@config/upload';
 import ensureAuthenticated from '../middlewares/ensureAuthenticated';
 import UserApplicationsController from '../controllers/UserApplicationsController';
 
-const userApplicationRouter = Router();
-const userApplicationsController = new UserApplicationsController();
 const upload = multer(uploadConfig.multer);
 
-userApplicationRouter.post(
-  '/',
-  ensureAuthenticated,
-  restrictTo('freeUser', 'premiumUser'),
-  upload.single('curriculumn'),
-  userApplicationsController.create,
-);
+const userApplicationRouter = Router();
+const userApplicationsController = new UserApplicationsController();
+
+userApplicationRouter.use(ensureAuthenticated);
+userApplicationRouter.use(restrictTo('freeUser', 'premiumUser'));
+
+userApplicationRouter.post('/', upload.single('curriculumn'), userApplicationsController.create);
 
 export default userApplicationRouter;
