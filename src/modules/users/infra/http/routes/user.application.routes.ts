@@ -11,8 +11,12 @@ const userApplicationRouter = Router();
 const userApplicationsController = new UserApplicationsController();
 const upload = multer(uploadConfig.multer);
 
-userApplicationRouter.use(ensureAuthenticated);
-userApplicationRouter.use(restrictTo('freeUser', 'premiumUser'));
-userApplicationRouter.post('/', upload.single('curriculumn'), userApplicationsController.create);
+userApplicationRouter.post(
+  '/',
+  ensureAuthenticated,
+  restrictTo('freeUser', 'premiumUser'),
+  upload.single('curriculumn'),
+  userApplicationsController.create,
+);
 
 export default userApplicationRouter;
