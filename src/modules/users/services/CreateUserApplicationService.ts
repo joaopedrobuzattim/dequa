@@ -51,7 +51,7 @@ class CreateUserApplicationService {
 
     if (checkApplication) {
       await fs.promises.unlink(originalPath);
-      throw new AppError('Vocẽ já aplicou para esta vaga!', 409);
+      throw new AppError('Você já aplicou para esta vaga!', 409);
     }
 
     const fileName = await this.storageProvider.saveFile(curriculumn);
