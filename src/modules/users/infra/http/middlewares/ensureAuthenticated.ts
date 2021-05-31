@@ -12,10 +12,12 @@ interface ITokenPayload {
 
 function ensureAuthenticated(request: Request, _response: Response, next: NextFunction): void {
   const authHeader = request.headers.authorization;
-  console.log(authHeader);
-  console.log('Chegou aqui');
+
   if (!authHeader) {
-    console.log('Chegou aqui 2 ');
+    if (request.body.curriculumn) {
+      request.body.curriculumn = null;
+    }
+
     throw new AppError('JWT token ausente!', 401);
   }
 
