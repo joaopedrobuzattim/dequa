@@ -13,11 +13,14 @@ interface ITokenPayload {
 function ensureAuthenticated(request: Request, _response: Response, next: NextFunction): void {
   const authHeader = request.headers.authorization;
 
-  if (!authHeader) {
-    if (request.body.curriculumn) {
-      delete request.body.curriculumn;
-    }
+  console.log(request.body.curriculumn);
 
+  if (request.body.curriculumn || !authHeader) {
+    delete request.body.curriculumn;
+    throw new AppError('JWT token ausente!', 401);
+  }
+
+  if (!authHeader) {
     throw new AppError('JWT token ausente!', 401);
   }
 
