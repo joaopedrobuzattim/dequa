@@ -25,7 +25,7 @@ class Vacancy {
   level: 'internship' | 'trainee' | 'junior' | 'senior' | 'full' | 'master';
 
   @Column()
-  isRemote: boolean;
+  contract: string;
 
   @Column()
   companiesId: string;

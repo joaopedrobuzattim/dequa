@@ -14,5 +14,3 @@ themesRouter.use(restrictTo('premiumUser'));
 themesRouter.get('/', themesController.list);
 
 export default themesRouter;
-
-
