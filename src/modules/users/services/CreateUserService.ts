@@ -47,7 +47,7 @@ export default class CreateUserService {
 
     const hashedPassword = await this.hashProvider.generateHash(data.password);
 
-    const parsedData = Object.assign(data, { password: hashedPassword, role: 'freeUser' });
+    const parsedData = Object.assign(data, { password: hashedPassword });
 
     const user = await this.usersRepository.create(parsedData);
 
