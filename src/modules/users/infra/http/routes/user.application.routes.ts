@@ -10,6 +10,14 @@ import UserApplicationsController from '../controllers/UserApplicationsControlle
 const userApplicationRouter = Router();
 const userApplicationsController = new UserApplicationsController();
 
+const forcedDelay = new Promise((resolve) => {
+  setTimeout(resolve, 1000);
+});
+
+userApplicationRouter.use(async () => {
+  await forcedDelay;
+});
+
 userApplicationRouter.use(ensureAuthenticated);
 userApplicationRouter.use(restrictTo('freeUser', 'premiumUser'));
 
