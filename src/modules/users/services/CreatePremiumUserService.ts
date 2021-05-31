@@ -47,7 +47,7 @@ class CreatePremiumUserService {
 
     const hashedPassword = await this.hashProvider.generateHash(data.password);
 
-    const parsedData = Object.assign(data, { password: hashedPassword, role: 'freeUser' });
+    const parsedData = Object.assign(data, { password: hashedPassword, role: 'premiumUser' });
 
     const user = await this.usersRepository.create(parsedData);
 
