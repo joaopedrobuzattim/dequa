@@ -12,7 +12,7 @@ interface ITokenPayload {
 
 function ensureAuthenticated(request: Request, _response: Response, next: NextFunction): void {
   const authHeader = request.headers.authorization;
-
+  console.log('Chegou aqui');
   if (!authHeader) {
     throw new AppError('JWT token ausente!', 401);
   }
