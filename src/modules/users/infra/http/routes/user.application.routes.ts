@@ -10,6 +10,8 @@ import UserApplicationsController from '../controllers/UserApplicationsControlle
 const userApplicationRouter = Router();
 const userApplicationsController = new UserApplicationsController();
 
+console.log('Before middlewares');
+
 userApplicationRouter.use(ensureAuthenticated);
 userApplicationRouter.use(restrictTo('freeUser', 'premiumUser'));
 

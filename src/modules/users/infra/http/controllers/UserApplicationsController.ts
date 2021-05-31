@@ -5,6 +5,8 @@ import AppError from '@shared/errors/AppError';
 
 export default class UserApplicationsController {
   public async create(request: Request, response: Response): Promise<Response> {
+    console.log('Came here');
+
     if (request.multerFileFormatError) {
       throw new AppError('Formato invalido! Somente pdf, jpg, jpeg e png são permitidos!', 422);
     }
