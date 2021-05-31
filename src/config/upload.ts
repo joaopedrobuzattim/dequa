@@ -2,6 +2,7 @@ import { resolve } from 'path';
 import crypto from 'crypto';
 import multer from 'multer';
 import { Request, Express } from 'express';
+import AppError from '@shared/errors/AppError';
 
 const tmpFolder = resolve(__dirname, '..', '..', 'tmp');
 
@@ -35,6 +36,12 @@ export default {
     storage: multer.diskStorage({
       destination: tmpFolder,
       filename(request: Request, file: Express.Multer.File, callback: (error: Error | null, filename: string) => void) {
+        const authHeader = request.headers.authorization;
+
+        if (!authHeader) {
+          throw new AppError('JWT token ausente!', 401);
+        }
+
         const fileHash = crypto.randomBytes(10).toString('hex');
         const fileName = `${fileHash}-${file.originalname}`;
 
