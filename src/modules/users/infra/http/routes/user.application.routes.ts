@@ -14,8 +14,9 @@ const forcedDelay = new Promise((resolve) => {
   setTimeout(resolve, 1000);
 });
 
-userApplicationRouter.use(async () => {
+userApplicationRouter.use(async (req, res, next) => {
   await forcedDelay;
+  next();
 });
 
 userApplicationRouter.use(ensureAuthenticated);
