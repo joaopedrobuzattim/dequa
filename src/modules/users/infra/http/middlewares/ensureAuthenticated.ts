@@ -15,7 +15,7 @@ function ensureAuthenticated(request: Request, _response: Response, next: NextFu
 
   if (!authHeader) {
     if (request.body.curriculumn) {
-      request.body.curriculumn = null;
+      delete request.body.curriculumn;
     }
 
     throw new AppError('JWT token ausente!', 401);
