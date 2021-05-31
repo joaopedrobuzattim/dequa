@@ -1,7 +1,6 @@
 import { inject, injectable } from 'tsyringe';
 import IUsersRepository from '@modules/users/repositories/IUsersRepository';
 import AppError from '@shared/errors/AppError';
-import Disability from '@modules/disabilities/infra/Typeorm/entities/Disability';
 import IDisabilitiesRepository from '@modules/disabilities/repositories/IDisabilitiesRepository';
 import IHashProvider from '../providers/HashProvider/models/IHashProvider';
 import User from '../infra/Typeorm/entities/User';
@@ -40,26 +39,23 @@ class CreatePremiumUserService {
       throw new AppError(`Cpf ${data.cpf} já está registrado!`, 409);
     }
 
-    const disabilities: Disability[] = [];
+    const disabilities = await this.disabilitiesRepository.findById(data.disability[0]);
 
-    const { disability } = data;
+    if (!disabilities) {
+      throw new AppError(`Deficiência não existente!`, 404);
+    }
 
-    disability.forEach(async (currentDisability) => {
-      const checkIfDisabilityExists = await this.disabilitiesRepository.findById(currentDisability);
-
-      if (checkIfDisabilityExists) disabilities.push(checkIfDisabilityExists);
-    });
     const hashedPassword = await this.hashProvider.generateHash(data.password);
 
-    const parsedData = Object.assign(data, { password: hashedPassword, role: 'premiumUser' });
+    const parsedData = Object.assign(data, { password: hashedPassword, role: 'freeUser' });
 
     const user = await this.usersRepository.create(parsedData);
 
-    const disabilitiesInUser = Object.assign(user, { disability: disabilities });
+    const disabilityInUser = Object.assign(user, { disability: disabilities });
 
-    await this.usersRepository.save(disabilitiesInUser);
+    await this.usersRepository.save(disabilityInUser);
 
-    return disabilitiesInUser;
+    return disabilityInUser;
   }
 }
 
