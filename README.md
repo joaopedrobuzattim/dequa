@@ -70,11 +70,16 @@ $ touch .env
 ## Em um editor SQL de sua preferência, crie a database dequa
 CREATE DATABASE dequa;
 
-## Inicie a aplicação
-$ yarn dev:server
-
 ## Rode as migrations
 $ yarn typeorm migration:run 
+
+## Rode o comando de seed para criar o usuario admin 
+## email: admin@admin.com
+## password: admi
+$ yarn seed:run
+
+## Inicie a aplicação
+$ yarn dev:server
 
 ## Aplicação rodando
 ```
