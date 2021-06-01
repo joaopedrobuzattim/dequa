@@ -17,7 +17,7 @@ Você já reparou em quantas pessoas com deficiência convivem ou já conviveram
  <a href="#objective">Objetivo</a> •
  <a href="#technologies">Tecnologias</a> • 
  <a href="#usage">Utilizar</a> • 
- <a href="#documentação">Documentação</a> • 
+ <a href="#:clipboard: - Documentação">Documentação</a> • 
  <a href="#author">Autor</a> • 
  <a href="#license">Licensa</a>
 </p>
@@ -83,7 +83,7 @@ $ yarn dev:server
 
 ## Aplicação rodando
 ```
-## Documentação
+## :clipboard: Documentação
  Esta API foi documentada com [Postman](https://www.postman.com/)
 - Link: https://documenter.getpostman.com/view/13464744/TzXwEdjw
 
