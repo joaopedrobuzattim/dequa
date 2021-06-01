@@ -51,7 +51,7 @@ As seguintes tecnologias foram utilizadas neste projeto:
 ```bash
 
 ## Clone o repositório do projeto 
-$ git clone https://github.com/joaopedrobuzattim/ioasys2.git
+$ git clone https://github.com/joaopedrobuzattim/dequa.git
 
 ## Entre na pasta criada 
 $ cd ioasys2
