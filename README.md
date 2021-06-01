@@ -75,7 +75,7 @@ $ yarn typeorm migration:run
 
 ## Rode o comando de seed para criar o usuario admin 
 ## email: admin@admin.com
-## password: admi
+## password: admin
 $ yarn seed:run
 
 ## Inicie a aplicação
