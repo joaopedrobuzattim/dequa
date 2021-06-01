@@ -54,7 +54,7 @@ As seguintes tecnologias foram utilizadas neste projeto:
 $ git clone https://github.com/joaopedrobuzattim/dequa.git
 
 ## Entre na pasta criada 
-$ cd ioasys2
+$ cd dequa
 
 ## Instale as dependencias do projeto com o yarn ou com o npm
 $ yarn
