@@ -7,7 +7,7 @@
 </h1>
 <p align="center"> 
 <b>
-API desenvolvida durante a segunda fase do [Ioasys](https://ioasys.com.br/) Camp - Trilha Backend
+API desenvolvida durante a segunda fase do <a href="https://ioasys.com.br/">Ioasys</a> Camp - Trilha Backend
 </b>
 </p>
 <p align="center"> 
@@ -17,7 +17,7 @@ Você já reparou em quantas pessoas com deficiência convivem ou já conviveram
  <a href="#objective">Objetivo</a> •
  <a href="#technologies">Tecnologias</a> • 
  <a href="#usage">Utilizar</a> • 
- <a href="#documentation">Documentação</a> • 
+ <a href="#documentação">Documentação</a> • 
  <a href="#author">Autor</a> • 
  <a href="#license">Licensa</a>
 </p>
@@ -78,10 +78,8 @@ $ yarn typeorm migration:run
 
 ## Aplicação rodando
 ```
-
-<h2 id="documentation"> :page_facing_up: Documentação </h2>
-Esta API foi documentada com [Postman](https://www.postman.com/)
-
+## Documentação
+ Esta API foi documentada com [Postman](https://www.postman.com/)
 - Link: https://documenter.getpostman.com/view/13464744/TzXwEdjw
 
 
@@ -100,5 +98,5 @@ Entre em contato!
   </a>
 
 
-<h2 id="lisence">Licença</h2>
+## License
 This project is [MIT](./LICENSE.txt) licensed.
