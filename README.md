@@ -31,7 +31,7 @@ Você já reparou em quantas pessoas com deficiência convivem ou já conviveram
 O objetivo do Dequa é facilitar a presença de PCD's ( Pessoas com Deficiências ) no mercado de trabalho por meio de vagas personalizadas, acesso fácil á educação e sensação de inclusão e pertencimento.
 
 
-<h2 id="technologies"> 🛠 Technologies </h2>
+<h2 id="technologies"> 🛠 Tecnologias </h2>
 
 As seguintes tecnologias foram utilizadas neste projeto:
 
@@ -99,4 +99,4 @@ Entre em contato!
 
 
 ## License
-This project is [MIT](./LICENSE.txt) licensed.
+This project is MIT licensed.
