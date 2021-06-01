@@ -27,4 +27,5 @@ module.exports = {
   cli: {
     migrationsDir: './src/shared/infra/Typeorm/migrations',
   },
+  seeds: ['src/shared/infra/Typeorm/seeds/**/*{.ts,.js}'],
 };

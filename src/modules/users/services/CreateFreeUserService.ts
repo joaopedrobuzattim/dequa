@@ -47,15 +47,11 @@ class CreateFreeUserService {
 
     const hashedPassword = await this.hashProvider.generateHash(data.password);
 
-    const parsedData = Object.assign(data, { password: hashedPassword, role: 'freeUser' });
+    const parsedData = Object.assign(data, { password: hashedPassword, role: 'freeUser', disability: [disabilities] });
 
     const user = await this.usersRepository.create(parsedData);
 
-    const disabilityInUser = Object.assign(user, { disability: disabilities });
-
-    await this.usersRepository.save(disabilityInUser);
-
-    return disabilityInUser;
+    return user;
   }
 }
 

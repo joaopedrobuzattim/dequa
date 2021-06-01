@@ -47,14 +47,10 @@ export default class CreateUserService {
 
     const hashedPassword = await this.hashProvider.generateHash(data.password);
 
-    const parsedData = Object.assign(data, { password: hashedPassword });
+    const parsedData = Object.assign(data, { password: hashedPassword, disability: [disabilities] });
 
     const user = await this.usersRepository.create(parsedData);
 
-    const disabilityInUser = Object.assign(user, { disability: disabilities });
-
-    await this.usersRepository.save(disabilityInUser);
-
-    return disabilityInUser;
+    return user;
   }
 }
