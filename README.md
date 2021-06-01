@@ -1,13 +1,13 @@
 <h1 align="center">
     Dequa
     <br>
-    <a href="https://www.linkedin.com/in/joão-pedro-buzatti-mendes-b032301ba">
+    <a target="_blank" href="https://www.linkedin.com/in/joão-pedro-buzatti-mendes-b032301ba">
       <img alt="Linkedin" src="https://img.shields.io/badge/-João%20Pedro%20Buzatti%20Mendes-29B6D1?label=Linkedin&logo=linkedin&style=flat-square">
     </a>
 </h1>
 <p align="center"> 
 <b>
-API desenvolvida durante a segunda fase do <a href="https://ioasys.com.br/">Ioasys</a> Camp - Trilha Backend
+API desenvolvida durante a segunda fase do <a target="_blank" href="https://ioasys.com.br/">Ioasys</a> Camp - Trilha Backend
 </b>
 </p>
 <p align="center"> 
@@ -23,7 +23,7 @@ Você já reparou em quantas pessoas com deficiência convivem ou já conviveram
 </p>
 
 <h1 align="center">
-    <img width=400 src="assets/logo.png">
+    <img width=430 src="assets/logo.png">
 </h1>
 
 
@@ -85,7 +85,7 @@ $ yarn dev:server
 ```
 ## :clipboard: Documentação
  Esta API foi documentada com [Postman](https://www.postman.com/)
-- Link: https://documenter.getpostman.com/view/13464744/TzXwEdjw
+- Link: <a target="_blank" href="https://documenter.getpostman.com/view/13464744/TzXwEdjw"> Documentação da API </a>
 
 
 <h2 id="author">Autor</h2>
@@ -98,7 +98,7 @@ $ yarn dev:server
 
 Entre em contato!
 
-<a href="https://www.linkedin.com/in/joão-pedro-buzatti-mendes-b032301ba">
+<a target="_blank" href="https://www.linkedin.com/in/joão-pedro-buzatti-mendes-b032301ba">
     <img alt="Linkedin" src="https://img.shields.io/badge/-João%20Pedro%20Buzatti%20Mendes-29B6D1?label=Linkedin&logo=linkedin&style=flat-square">
   </a>
 
